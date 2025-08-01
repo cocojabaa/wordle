@@ -1,0 +1,6 @@
+@use "./normalize";
+@use "./vars";
+
+#root {
+  background-color: var(--page-background-color);
+}
