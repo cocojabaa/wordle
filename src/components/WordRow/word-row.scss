@@ -1,0 +1,35 @@
+@use "../../styles/vars";
+
+.word-row {
+  display: flex;
+  gap: 0.3rem;
+
+  &__letter-container {
+    height: 4.5rem;
+    width: 4.5rem;
+    border: var(--letter-border-color) 1px solid;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--correct {
+      background-color: var(--correct-letter-color);
+      animation: show 0.2s forwards;
+    }
+  }
+  &__letter {
+    color: var(--font-color-primary);
+    font-size: 2.5rem;
+    transform: translateY(-0.2rem);
+  }
+}
+
+@keyframes show {
+  from {
+    scale: 1.1;
+  }
+  to {
+    scale: 1.0;
+  }
+}
