@@ -3,25 +3,31 @@
 .word-row {
   display: flex;
   gap: 0.3rem;
+  justify-content: center;
 
-  &__letter-container {
-    height: 4.5rem;
-    width: 4.5rem;
+
+  &__letter-input {
+    height: 3.6rem;
+    width: 3.6rem;
+    min-width: 0;
+    text-align: center;
+    outline: none;
+    background-color: transparent;
     border: var(--letter-border-color) 1px solid;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: var(--font-color-primary);
+    font-size: 2rem;
 
     &--correct {
       background-color: var(--correct-letter-color);
       animation: show 0.2s forwards;
     }
   }
-  &__letter {
-    color: var(--font-color-primary);
-    font-size: 2.5rem;
-    transform: translateY(-0.2rem);
+  &--focus {
+    cursor: text;
+    input {
+      background-color: var(--focus-row-background-color);
+    }
   }
 }
 
