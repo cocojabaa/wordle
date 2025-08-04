@@ -4,9 +4,10 @@ import {Link} from "react-router-dom";
 import {useState} from "react";
 
 const wordLength = 5;
+const correctWord = "тварь";
 
 export default function GamePage() {
-  const [focusedRowIndex, setFocusedRowIndex] = useState(2);
+  const [focusedRowIndex, setFocusedRowIndex] = useState(0);
 
   function nextFocusedRowIndex() {
     if (focusedRowIndex !== 4) setFocusedRowIndex(prev => prev + 1);

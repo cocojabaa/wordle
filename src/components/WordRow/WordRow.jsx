@@ -15,9 +15,9 @@ export default function WordRow({wordLength, correctWord, isFocused, onCompleteH
   }
 
   function onInputKeydownHandler(e, index) {
-    if (e.key.length === 1 && e.key !== " " && !letters[index]) {
+    if (/^[а-яА-Яa-zA-ZёЁ]$/.test(e.key) && !letters[index]) { // проверка на букву и что в ячейке ничего не написано
       setLetters(prev => {
-        return prev.map((item, i) => i === index ? e.key : item)
+        return prev.map((item, i) => i === index ? e.key.toLowerCase() : item)
       })
       setNextFocusIndex()
     }
@@ -28,7 +28,8 @@ export default function WordRow({wordLength, correctWord, isFocused, onCompleteH
       setPreviousFocusIndex()
     }
     if (e.key === "Enter") {
-      onCompleteHandler(letters.join(""))
+      if (letters.includes("")) return
+      onCompleteHandler()
       // TODO выделение букав
     }
     if (e.key === "ArrowRight") setNextFocusIndex()
@@ -46,6 +47,10 @@ export default function WordRow({wordLength, correctWord, isFocused, onCompleteH
   useEffect(() => {
     wordRowRef.current.children[focusIndex].focus()
   }, [focusIndex])
+
+  useEffect(() => {
+    if (isFocused) wordRowRef.current.children[0].focus()
+  }, [isFocused]);
 
   return <div
     className={isFocused ? "word-row word-row--focus" : "word-row"}
