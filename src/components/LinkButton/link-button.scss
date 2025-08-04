@@ -1,0 +1,16 @@
+@use "../../styles/vars";
+
+.link-button {
+  color: var(--font-color-primary);
+  text-decoration: none;
+  border: 1px solid var(--letter-border-color);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  transition-duration: 0.2s;
+
+  @media(hover: hover) {
+    &:hover {
+      background-color: var(--button-hover-background-color);
+    }
+  }
+}

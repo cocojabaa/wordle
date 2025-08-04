@@ -19,5 +19,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
+  }
+
+  &__contact-image {
+    height: 50px;
+  }
+
+  &__contact {
+    justify-self: center;
+    align-self: end;
+    margin-bottom: 3rem;
   }
 }

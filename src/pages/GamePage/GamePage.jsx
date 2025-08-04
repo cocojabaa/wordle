@@ -27,11 +27,14 @@ export default function GamePage() {
     </header>
     <main className="game-page__main">
       <div className="game-page__word-rows-container">
-        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 0} onCompleteHandler={onCompleteHandler} />
-        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 1} onCompleteHandler={onCompleteHandler} />
-        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 2} onCompleteHandler={onCompleteHandler} />
-        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 3} onCompleteHandler={onCompleteHandler} />
-        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 4} onCompleteHandler={onCompleteHandler} />
+        {[...Array(5).keys()].map(index => {
+          return <WordRow
+            correctWord={correctWord}
+            wordLength={wordLength}
+            isFocused={focusedRowIndex === index}
+            onCompleteHandler={onCompleteHandler}
+          />
+        })}
       </div>
     </main>
   </div>
