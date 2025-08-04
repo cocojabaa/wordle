@@ -12,11 +12,11 @@ export default function GamePage() {
   function nextFocusedRowIndex() {
     if (focusedRowIndex !== 4) setFocusedRowIndex(prev => prev + 1);
   }
-  // 0 - ничего
-  // 1 - не на своем месте
-  // 2 - на своем месте
-  // results = {"т": 0, "в": 2, ...}
+
   function onCompleteHandler(results) {
+    if (results.every(item => item === 2)) {
+      return
+    }
     nextFocusedRowIndex()
   }
 
@@ -27,11 +27,11 @@ export default function GamePage() {
     </header>
     <main className="game-page__main">
       <div className="game-page__word-rows-container">
-        <WordRow wordLength={wordLength} isFocused={focusedRowIndex === 0} onCompleteHandler={onCompleteHandler} />
-        <WordRow wordLength={wordLength} isFocused={focusedRowIndex === 1} onCompleteHandler={onCompleteHandler} />
-        <WordRow wordLength={wordLength} isFocused={focusedRowIndex === 2} onCompleteHandler={onCompleteHandler} />
-        <WordRow wordLength={wordLength} isFocused={focusedRowIndex === 3} onCompleteHandler={onCompleteHandler} />
-        <WordRow wordLength={wordLength} isFocused={focusedRowIndex === 4} onCompleteHandler={onCompleteHandler} />
+        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 0} onCompleteHandler={onCompleteHandler} />
+        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 1} onCompleteHandler={onCompleteHandler} />
+        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 2} onCompleteHandler={onCompleteHandler} />
+        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 3} onCompleteHandler={onCompleteHandler} />
+        <WordRow correctWord={correctWord} wordLength={wordLength} isFocused={focusedRowIndex === 4} onCompleteHandler={onCompleteHandler} />
       </div>
     </main>
   </div>

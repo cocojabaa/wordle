@@ -1,5 +1,6 @@
 import "./word-row.scss"
 import {useRef, useState, useEffect} from "react"
+import WordRowResult from "../../utils/WordRowResults.js";
 
 export default function WordRow({wordLength, correctWord, isFocused, onCompleteHandler}) {
   const [focusIndex, setFocusIndex] = useState(0)
@@ -28,8 +29,14 @@ export default function WordRow({wordLength, correctWord, isFocused, onCompleteH
       setPreviousFocusIndex()
     }
     if (e.key === "Enter") {
-      if (letters.includes("")) return
-      onCompleteHandler()
+      if (letters.includes("")) return // если есть неписанные буквы
+      const enteredWord = letters.join("")
+      const results = new WordRowResult(correctWord, enteredWord).results
+      results.forEach((value, index) => {
+        if (value === 2) wordRowRef.current.children[index].classList.add("word-row__letter-input--correct")
+        else if (value === 1) wordRowRef.current.children[index].classList.add("word-row__letter-input--present")
+      })
+      onCompleteHandler(results)
       // TODO выделение букав
     }
     if (e.key === "ArrowRight") setNextFocusIndex()

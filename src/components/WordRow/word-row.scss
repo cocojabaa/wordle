@@ -5,6 +5,13 @@
   gap: 0.3rem;
   justify-content: center;
 
+  &--focus {
+    cursor: text;
+    input {
+      background-color: var(--focus-row-background-color);
+    }
+  }
+
 
   &__letter-input {
     height: 3.6rem;
@@ -17,17 +24,17 @@
     border-radius: 10px;
     color: var(--font-color-primary);
     font-size: 2rem;
-
-    &--correct {
-      background-color: var(--correct-letter-color);
-      animation: show 0.2s forwards;
-    }
   }
-  &--focus {
-    cursor: text;
-    input {
-      background-color: var(--focus-row-background-color);
-    }
+
+
+  & &__letter-input--correct {  // Дважды повторяем .word-row для специфичность 0, 2, 0
+    background-color: var(--correct-letter-color);
+    animation: show 0.2s forwards;
+  }
+
+  & &__letter-input--present {  // Дважды повторяем .word-row для специфичность 0, 2, 0
+    background-color: var(--present-letter-color);
+    animation: show 0.2s forwards;
   }
 }
 
