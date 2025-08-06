@@ -10,6 +10,11 @@
   background-color: transparent;
   outline: none;
 
+  &--disabled {
+    //pointer-events: none;
+    cursor: default;
+  }
+
   @media(hover: hover) {
     &:hover {
       background-color: var(--button-hover-background-color);

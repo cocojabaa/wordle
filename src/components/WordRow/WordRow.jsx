@@ -23,8 +23,15 @@ export default function WordRow({wordLength, correctWord, isFocused, onCompleteH
       setNextFocusIndex()
     }
     if (e.key === "Backspace") {
+      if (letters[focusIndex]) {
+        setLetters(prev => {
+          return prev.map((item, i) => i === index ? "" : item)
+        })
+        return
+      }
+      if (index === 0) return
       setLetters(prev => {
-        return prev.map((item, i) => i === index ? "" : item)
+        return prev.map((item, i) => i === index-1 ? "" : item)
       })
       setPreviousFocusIndex()
     }

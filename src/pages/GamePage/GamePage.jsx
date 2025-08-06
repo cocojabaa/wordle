@@ -1,13 +1,15 @@
 import WordRow from "../../components/WordRow";
 import "./game-page.scss"
 import {Link} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {RUWORDS} from "../../constants/RussianWords.js"
 
 const wordLength = 5;
-const correctWord = "тварь";
+
 
 export default function GamePage() {
   const [focusedRowIndex, setFocusedRowIndex] = useState(0);
+  const [correctWord, setCorrectWord] = useState("ххххх");
 
   function nextFocusedRowIndex() {
     if (focusedRowIndex !== 4) setFocusedRowIndex(prev => prev + 1);
@@ -20,6 +22,12 @@ export default function GamePage() {
     nextFocusedRowIndex()
   }
 
+  useEffect(() => {
+    const randomWord = RUWORDS[Math.floor(Math.random() * RUWORDS.length)]
+    setCorrectWord(randomWord.toLowerCase())
+    console.log("ПРАВИЛЬНОЕ СЛОВО:", randomWord.toLowerCase())
+  }, [])
+
   return <div className="game-page">
     <header className="game-page__header">
       <Link to="/" className="game-page__home-button">Вернуться</Link>
@@ -29,6 +37,7 @@ export default function GamePage() {
       <div className="game-page__word-rows-container">
         {[...Array(5).keys()].map(index => {
           return <WordRow
+            key={index}
             correctWord={correctWord}
             wordLength={wordLength}
             isFocused={focusedRowIndex === index}
