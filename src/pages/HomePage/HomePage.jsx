@@ -1,11 +1,11 @@
-import Button from "../../components/Button"
+import {Button} from "../../components/Button"
 import "./home-page.scss"
-import LinkButton from "../../components/LinkButton"
+import {LinkButton} from "../../components/LinkButton"
 import githubIcon from "../../assets/github.png"
 import {useModal} from "../../HOC/ModalProvider"
 import {EnterWordModal} from "../../components/EnterWordModal/index.js";
 
-export default function HomePage() {
+export function HomePage() {
   const {openModal} = useModal()
 
   return <div className="home-page">

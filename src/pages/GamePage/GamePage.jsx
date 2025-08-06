@@ -1,4 +1,4 @@
-import WordRow from "../../components/WordRow";
+import {WordRow} from "../../components/WordRow";
 import "./game-page.scss"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -7,7 +7,7 @@ import {RUWORDS} from "../../constants/RussianWords.js"
 const wordLength = 5;
 
 
-export default function GamePage() {
+export function GamePage() {
   const [focusedRowIndex, setFocusedRowIndex] = useState(0);
   const [correctWord, setCorrectWord] = useState("ххххх");
 

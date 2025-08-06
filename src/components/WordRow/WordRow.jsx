@@ -2,7 +2,7 @@ import "./word-row.scss"
 import {useRef, useState, useEffect} from "react"
 import WordRowResult from "../../utils/WordRowResults.js";
 
-export default function WordRow({wordLength, correctWord, isFocused, onCompleteHandler}) {
+export function WordRow({wordLength, correctWord, isFocused, onCompleteHandler}) {
   const [focusIndex, setFocusIndex] = useState(0)
   const wordRowRef = useRef(null)
   const [letters, setLetters] = useState(Array(wordLength).fill(""))

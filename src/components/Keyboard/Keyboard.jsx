@@ -1,6 +1,6 @@
 import "./keyboard.scss"
 
-export default function Keyboard() {
+export function Keyboard() {
   return <div className="keyboard">
 
   </div>

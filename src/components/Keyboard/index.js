@@ -1,1 +1,1 @@
-export {default} from "./Keyboard.jsx"
+export *from "./Keyboard.jsx"

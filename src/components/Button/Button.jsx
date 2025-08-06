@@ -1,6 +1,6 @@
 import "./button.scss"
 
-export default function Button({onClick, isDisabled, children, ...props}) {
+export function Button({onClick, isDisabled, children, ...props}) {
   return <button
     title={isDisabled ? "Кнопка не работает, но это временно!" : ""}
     disabled={isDisabled}

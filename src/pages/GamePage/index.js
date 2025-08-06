@@ -1,1 +1,1 @@
-export {default} from "./GamePage.jsx"
+export * from "./GamePage.jsx"

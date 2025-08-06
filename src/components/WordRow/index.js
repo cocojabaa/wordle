@@ -1,1 +1,1 @@
-export {default} from "./WordRow.jsx"
+export * from "./WordRow.jsx"

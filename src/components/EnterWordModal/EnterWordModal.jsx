@@ -1,4 +1,4 @@
-import Button from "../Button/index.js";
+import {Button} from "../Button/index.js";
 import { useModal } from "../../HOC/ModalProvider";
 import {useState} from "react"
 import "./enter-word-modal.scss"
