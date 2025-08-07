@@ -15,12 +15,17 @@ export const EnterWordModal = () => {
     } else setInputValue(e.target.value.toLowerCase())
   }
 
-  return <>
+  return <div className="enter-word-modal">
+    <label className="enter-word-modal__label" htmlFor="enter-word-modal-input">Введите слово</label>
     <input
-      className="modal-input"
+      id="enter-word-modal-input"
+      className="enter-word-modal__input"
       onChange={inputChangeHandler}
-      value={inputValue} // Добавьте value для контролируемого инпута
+      value={inputValue}
     />
-    <Button onClick={closeModal}>Закрыть модалку</Button>
-  </>
+    <div className="enter-word-modal__buttons-container">
+      <Button onClick={closeModal}>Отмена</Button>
+      <Button isDisabled={true}>Играть</Button>
+    </div>
+  </div>
 }

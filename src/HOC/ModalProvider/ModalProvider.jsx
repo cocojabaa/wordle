@@ -1,10 +1,12 @@
-import {createContext, useState, useContext} from "react";
+import {createContext, useState, useContext, useEffect} from "react";
 import "./modal-provider.scss"
+import {useLocation} from "react-router-dom";
 
  const ModalContext = createContext(null)
 
 export const ModalProvider = ({children}) => {
   const [modalContent, setModalContent] = useState(null);
+  const location = useLocation()
 
   const openModal = (content) => setModalContent(content)
   const closeModal = () => setModalContent(null);
@@ -12,6 +14,10 @@ export const ModalProvider = ({children}) => {
   const onClickHandler = (e) => {
     if (e.target.classList.contains("modal")) closeModal()
   }
+
+  useEffect(() => {
+    closeModal()
+  }, [location])
 
   return <ModalContext.Provider value={{openModal, closeModal}}>
     {children}
