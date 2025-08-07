@@ -2,6 +2,12 @@ import "./word-row.scss"
 import {useRef, useState, useEffect} from "react"
 import WordRowResult from "../../utils/WordRowResults.js";
 
+const letterClasses = {
+  0: "word-row__letter-input--incorrect",
+  1: "word-row__letter-input--present",
+  2: "word-row__letter-input--correct",
+}
+
 export function WordRow({wordLength, correctWord, isFocused, onCompleteHandler}) {
   const [focusIndex, setFocusIndex] = useState(0)
   const wordRowRef = useRef(null)
@@ -9,10 +15,6 @@ export function WordRow({wordLength, correctWord, isFocused, onCompleteHandler})
 
   function onRowClickHandler() {
     wordRowRef.current.children[focusIndex].focus()
-  }
-
-  function isInputClickable(inputIndex) {
-    return isFocused && focusIndex === inputIndex
   }
 
   function onInputKeydownHandler(e, index) {
@@ -39,15 +41,21 @@ export function WordRow({wordLength, correctWord, isFocused, onCompleteHandler})
       if (letters.includes("")) return // если есть неписанные буквы
       const enteredWord = letters.join("")
       const results = new WordRowResult(correctWord, enteredWord).results
-      results.forEach((value, index) => {
-        if (value === 2) wordRowRef.current.children[index].classList.add("word-row__letter-input--correct")
-        else if (value === 1) wordRowRef.current.children[index].classList.add("word-row__letter-input--present")
-      })
+      renderLettersColors(results)
       onCompleteHandler(results)
-      // TODO выделение букав
     }
     if (e.key === "ArrowRight") setNextFocusIndex()
     if (e.key === "ArrowLeft") setPreviousFocusIndex()
+  }
+
+  function isInputClickable(inputIndex) {
+    return isFocused && focusIndex === inputIndex
+  }
+
+  function renderLettersColors(results) {
+    results.forEach((value, index) => {
+      wordRowRef.current.children[index].classList.add(letterClasses[value])
+    })
   }
 
   function setNextFocusIndex() {

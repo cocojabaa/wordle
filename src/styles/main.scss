@@ -1,6 +1,22 @@
 @use "./normalize";
 @use "./vars";
+@use "./breakpoints" as *;
 
 #root {
   background-color: var(--page-background-color);
+}
+
+:root {
+  @include respond-to("xxl") {
+    font-size: 15px;
+  }
+  @include respond-to("xl") {
+    font-size: 14px;
+  }
+  @include respond-to("lg") {
+    font-size: 13px;
+  }
+  //@include respond-to("md") {
+  //  font-size: 12px;
+  //}
 }

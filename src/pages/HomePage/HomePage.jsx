@@ -9,7 +9,7 @@ export function HomePage() {
   const {openModal} = useModal()
 
   return <div className="home-page">
-    <h1 className="home-page__title">Worlde!</h1>
+    <h1 className="home-page__title">Wordle!</h1>
     <div className="home-page__buttons-container">
       <LinkButton to="/play">Играть со случайным словом</LinkButton>
       <Button isDisabled={false} onClick={() => openModal(<EnterWordModal />)}>Загадать слово</Button>

@@ -1,6 +1,8 @@
 import {WordRow} from "../../components/WordRow";
+import {LinkButton} from "../../components/LinkButton";
 import "./game-page.scss"
 import {Link} from "react-router-dom";
+import {Button} from "../../components/Button";
 import {useEffect, useState} from "react";
 import {RUWORDS} from "../../constants/RussianWords.js"
 
@@ -25,17 +27,17 @@ export function GamePage() {
   useEffect(() => {
     const randomWord = RUWORDS[Math.floor(Math.random() * RUWORDS.length)]
     setCorrectWord(randomWord.toLowerCase())
-    console.log("ПРАВИЛЬНОЕ СЛОВО:", randomWord.toLowerCase())
+    // console.log("ПРАВИЛЬНОЕ СЛОВО:", randomWord.toLowerCase())
   }, [])
 
   return <div className="game-page">
     <header className="game-page__header">
-      <Link to="/" className="game-page__home-button">Вернуться</Link>
-      <p className="game-page__title">Worlde!</p>
+      <LinkButton to="/">Вернуться</LinkButton>
+      <Button isDisabled={true}>Подсказка</Button>
     </header>
     <main className="game-page__main">
       <div className="game-page__word-rows-container">
-        {[...Array(5).keys()].map(index => {
+        {[...Array(6).keys()].map(index => {
           return <WordRow
             key={index}
             correctWord={correctWord}

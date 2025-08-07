@@ -1,4 +1,5 @@
 @use "../../styles/vars";
+@use "../../styles/breakpoints" as *;
 
 .word-row {
   display: flex;
@@ -14,8 +15,8 @@
 
 
   &__letter-input {
-    height: 3.6rem;
-    width: 3.6rem;
+    height: 3.3rem;
+    width: 3.3rem;
     min-width: 0;
     text-align: center;
     outline: none;
@@ -23,7 +24,8 @@
     border: var(--letter-border-color) 1px solid;
     border-radius: 10px;
     color: var(--font-color-primary);
-    font-size: 2rem;
+    font-size: 1.8rem;
+
   }
 
 
@@ -35,6 +37,15 @@
   & &__letter-input--present {  // Дважды повторяем .word-row для специфичность 0, 2, 0
     background-color: var(--present-letter-color);
     animation: show 0.2s forwards;
+  }
+
+  & &__letter-input--incorrect {  // Дважды повторяем .word-row для специфичность 0, 2, 0
+    background-color: var(--letter-border-color);
+    animation: show 0.2s forwards;
+  }
+
+  @include respond-to("sm") {
+
   }
 }
 
