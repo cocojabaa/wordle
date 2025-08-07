@@ -21,13 +21,25 @@
 
   &--incorrect {
     background-color: var(--letter-border-color);
+    animation: show 0.2s forwards;
   }
 
   &--present {
     background-color: var(--present-letter-color);
+    animation: show 0.2s forwards;
   }
 
   &--correct {
     background-color: var(--correct-letter-color);
+    animation: show 0.2s forwards;
+  }
+}
+
+@keyframes show {
+  from {
+    scale: 1.1;
+  }
+  to {
+    scale: 1.0;
   }
 }

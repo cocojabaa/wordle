@@ -7,6 +7,7 @@ import {RUWORDS} from "../../constants/russianWords.js"
 import {useModal} from "../../HOC/ModalProvider"
 import {VictoryModal} from "../../components/VictoryModal";
 import {Keyboard} from "../../components/Keyboard";
+import {HelpModal} from "../../components/HelpModal/index.js";
 
 const wordLength = 5;
 const numberOfAttempts = 6;
@@ -55,7 +56,7 @@ export function GamePage() {
   return <div className="game-page">
     <header className="game-page__header">
       <LinkButton to="/">Вернуться</LinkButton>
-      <Button isDisabled={true}>Показать правильное слово</Button>
+      <Button onClick={() => openModal(<HelpModal correctWord={correctWord}/>)}>Показать правильное слово</Button>
     </header>
     <main className="game-page__main">
       <div className="game-page__word-rows-container">
