@@ -1,12 +1,7 @@
 import "./word-row.scss"
 import {useRef, useState, useEffect} from "react"
 import WordRowResult from "../../utils/WordRowResults.js";
-
-const letterClasses = {
-  0: "word-row__letter-input--incorrect",
-  1: "word-row__letter-input--present",
-  2: "word-row__letter-input--correct",
-}
+import {letterStateClasses} from "../../constants/letterStateClasses.js";
 
 export function WordRow({wordLength, correctWord, isFocused, onCompleteHandler}) {
   const [focusIndex, setFocusIndex] = useState(0)
@@ -18,7 +13,7 @@ export function WordRow({wordLength, correctWord, isFocused, onCompleteHandler})
   }
 
   function onInputKeydownHandler(e, index) {
-    if (/^[а-яА-Яa-zA-ZёЁ]$/.test(e.key) && !letters[index]) { // проверка на букву и что в ячейке ничего не написано
+    if (/^[а-яА-ЯёЁ]$/.test(e.key) && !letters[index]) { // проверка на букву и что в ячейке ничего не написано
       setLetters(prev => {
         return prev.map((item, i) => i === index ? e.key.toLowerCase() : item)
       })
@@ -40,8 +35,8 @@ export function WordRow({wordLength, correctWord, isFocused, onCompleteHandler})
     if (e.key === "Enter") {
       if (letters.includes("")) return // если есть неписанные буквы
       const enteredWord = letters.join("")
-      const results = new WordRowResult(correctWord, enteredWord).results
-      renderLettersColors(results)
+      const results = new WordRowResult(correctWord, enteredWord)
+      renderLettersColors(results.resultsArray)
       onCompleteHandler(results)
     }
     if (e.key === "ArrowRight") setNextFocusIndex()
@@ -54,7 +49,7 @@ export function WordRow({wordLength, correctWord, isFocused, onCompleteHandler})
 
   function renderLettersColors(results) {
     results.forEach((value, index) => {
-      wordRowRef.current.children[index].classList.add(letterClasses[value])
+      wordRowRef.current.children[index].classList.add(`word-row__letter-input--${letterStateClasses[value]}`)
     })
   }
 

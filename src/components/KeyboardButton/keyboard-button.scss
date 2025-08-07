@@ -1,0 +1,23 @@
+@use "../../styles/vars";
+
+.keyboard-button {
+  color: var(--font-color-primary);
+  background-color: var(--page-background-color);
+  border: 1px solid var(--letter-border-color);
+  height: 2.5rem;
+  padding-inline: 0.8rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+
+  &--incorrect {
+    background-color: var(--letter-border-color);
+  }
+
+  &--present {
+    background-color: var(--present-letter-color);
+  }
+
+  &--correct {
+    background-color: var(--correct-letter-color);
+  }
+}

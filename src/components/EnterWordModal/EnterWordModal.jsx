@@ -9,7 +9,7 @@ export const EnterWordModal = () => {
 
   function inputChangeHandler(e) {
     if (e.target.value.length > inputValue.length) {
-      if (/^[а-яА-Яa-zA-ZёЁ]$/.test(e.target.value.slice(-1)) && inputValue.length < 5) {
+      if (/^[а-яА-ЯёЁ]$/.test(e.target.value.slice(-1)) && inputValue.length < 5) {
         setInputValue(e.target.value.toLowerCase())
       }
     } else setInputValue(e.target.value.toLowerCase())
