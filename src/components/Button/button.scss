@@ -11,12 +11,11 @@
   outline: none;
 
   &--disabled {
-    //pointer-events: none;
     cursor: default;
   }
 
   @media(hover: hover) {
-    &:hover {
+    &:hover:not(.button--disabled) {
       background-color: var(--button-hover-background-color);
     }
   }

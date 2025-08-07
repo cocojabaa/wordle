@@ -16,7 +16,7 @@ export const EnterWordModal = () => {
   }
 
   return <div className="enter-word-modal">
-    <label className="enter-word-modal__label" htmlFor="enter-word-modal-input">Введите слово</label>
+    <label className="enter-word-modal__label" htmlFor="enter-word-modal-input">Ваше слово:</label>
     <input
       id="enter-word-modal-input"
       className="enter-word-modal__input"
