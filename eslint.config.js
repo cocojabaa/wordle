@@ -32,10 +32,21 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // Требует переноса, если параметры не помещаются в одну строку
+      'function-paren-newline': ['warn', 'multiline'],
+      // Если хотя бы один параметр перенесён, остальные тоже должны быть перенесены
+      'function-call-argument-newline': ['warn', 'consistent'],
       'import/order': [
         'warn',
         {
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+          ],
           'newlines-between': 'always',
         },
       ],
