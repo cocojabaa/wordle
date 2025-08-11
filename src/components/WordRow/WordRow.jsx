@@ -1,9 +1,16 @@
 import './word-row.scss';
+
 import { useRef, useState, useEffect } from 'react';
+
 import WordRowResult from '../../utils/WordRowResults.js';
 import { letterStateClasses } from '../../constants/letterStateClasses.js';
 
-export function WordRow({ wordLength, correctWord, isFocused, onCompleteHandler }) {
+export function WordRow({
+  wordLength,
+  correctWord,
+  isFocused,
+  onCompleteHandler,
+}) {
   const [focusIndex, setFocusIndex] = useState(0);
   const wordRowRef = useRef(null);
   const [letters, setLetters] = useState(Array(wordLength).fill(''));
@@ -16,7 +23,9 @@ export function WordRow({ wordLength, correctWord, isFocused, onCompleteHandler 
     if (/^[а-яА-ЯёЁ]$/.test(e.key) && !letters[index]) {
       // проверка на букву и что в ячейке ничего не написано
       setLetters((prev) => {
-        return prev.map((item, i) => (i === index ? e.key.toLowerCase() : item));
+        return prev.map((item, i) =>
+          i === index ? e.key.toLowerCase() : item
+        );
       });
       setNextFocusIndex();
     }
