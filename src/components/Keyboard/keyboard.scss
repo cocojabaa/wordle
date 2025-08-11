@@ -1,4 +1,4 @@
-@use "../../styles/vars";
+@use '../../styles/vars';
 
 .keyboard {
   width: 100%;
@@ -13,7 +13,5 @@
     justify-content: center;
     gap: 0.3rem;
     width: 100%;
-
-
   }
 }

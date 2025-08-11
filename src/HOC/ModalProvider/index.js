@@ -1,1 +1,1 @@
-export * from "./ModalProvider.jsx";
+export * from './ModalProvider.jsx';

@@ -1,1 +1,1 @@
-export * from "./EnterWordModal.jsx"
+export * from './EnterWordModal.jsx';

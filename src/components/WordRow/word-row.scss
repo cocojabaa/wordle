@@ -1,5 +1,5 @@
-@use "../../styles/vars";
-@use "../../styles/breakpoints" as *;
+@use '../../styles/vars';
+@use '../../styles/breakpoints' as *;
 
 .word-row {
   display: flex;
@@ -13,7 +13,6 @@
     }
   }
 
-
   &__letter-input {
     height: 3.3rem;
     width: 3.3rem;
@@ -25,27 +24,27 @@
     border-radius: 10px;
     color: var(--font-color-primary);
     font-size: 1.8rem;
-
   }
 
-
-  & &__letter-input--correct {  // Дважды повторяем .word-row для специфичность 0, 2, 0
+  & &__letter-input--correct {
+    // Дважды повторяем .word-row для специфичность 0, 2, 0
     background-color: var(--correct-letter-color);
     animation: show 0.2s forwards;
   }
 
-  & &__letter-input--present {  // Дважды повторяем .word-row для специфичность 0, 2, 0
+  & &__letter-input--present {
+    // Дважды повторяем .word-row для специфичность 0, 2, 0
     background-color: var(--present-letter-color);
     animation: show 0.2s forwards;
   }
 
-  & &__letter-input--incorrect {  // Дважды повторяем .word-row для специфичность 0, 2, 0
+  & &__letter-input--incorrect {
+    // Дважды повторяем .word-row для специфичность 0, 2, 0
     background-color: var(--letter-border-color);
     animation: show 0.2s forwards;
   }
 
-  @include respond-to("sm") {
-
+  @include respond-to('sm') {
   }
 }
 
@@ -54,6 +53,6 @@
     scale: 1.1;
   }
   to {
-    scale: 1.0;
+    scale: 1;
   }
 }

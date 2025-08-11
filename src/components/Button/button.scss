@@ -1,4 +1,4 @@
-@use "../../styles/vars";
+@use '../../styles/vars';
 
 .button {
   color: var(--font-color-primary);
@@ -14,7 +14,7 @@
     cursor: default;
   }
 
-  @media(hover: hover) {
+  @media (hover: hover) {
     &:hover:not(.button--disabled) {
       background-color: var(--button-hover-background-color);
     }

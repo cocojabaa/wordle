@@ -1,6 +1,10 @@
-import {Link} from "react-router-dom";
-import "./link-button.scss"
+import { Link } from 'react-router-dom';
+import './link-button.scss';
 
-export function LinkButton({to, children}) {
-  return <Link to={to} className="link-button">{children}</Link>
+export function LinkButton({ to, children }) {
+  return (
+    <Link to={to} className="link-button">
+      {children}
+    </Link>
+  );
 }
