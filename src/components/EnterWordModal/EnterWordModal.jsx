@@ -1,6 +1,7 @@
+import { useState } from 'react';
+
 import { Button } from '../Button/index.js';
 import { useModal } from '../../HOC/ModalProvider';
-import { useState } from 'react';
 import './enter-word-modal.scss';
 
 export const EnterWordModal = () => {
@@ -9,7 +10,10 @@ export const EnterWordModal = () => {
 
   function inputChangeHandler(e) {
     if (e.target.value.length > inputValue.length) {
-      if (/^[а-яА-ЯёЁ]$/.test(e.target.value.slice(-1)) && inputValue.length < 5) {
+      if (
+        /^[а-яА-ЯёЁ]$/.test(e.target.value.slice(-1)) &&
+        inputValue.length < 5
+      ) {
         setInputValue(e.target.value.toLowerCase());
       }
     } else setInputValue(e.target.value.toLowerCase());
@@ -17,7 +21,10 @@ export const EnterWordModal = () => {
 
   return (
     <div className="enter-word-modal">
-      <label className="enter-word-modal__label" htmlFor="enter-word-modal-input">
+      <label
+        className="enter-word-modal__label"
+        htmlFor="enter-word-modal-input"
+      >
         Ваше слово:
       </label>
       <input

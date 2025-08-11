@@ -2,7 +2,9 @@ import { WordRow } from '../../components/WordRow';
 import { LinkButton } from '../../components/LinkButton';
 import './game-page.scss';
 import { Button } from '../../components/Button';
+
 import { useEffect, useState } from 'react';
+
 import { RUWORDS } from '../../constants/russianWords.js';
 import { useModal } from '../../HOC/ModalProvider';
 import { VictoryModal } from '../../components/VictoryModal';
@@ -55,7 +57,8 @@ export function GamePage() {
   const [keyStates, setKeyStates] = useState(defaultKeyStates);
 
   function nextFocusedRowIndex() {
-    if (focusedRowIndex !== numberOfAttempts - 1) setFocusedRowIndex((prev) => prev + 1);
+    if (focusedRowIndex !== numberOfAttempts - 1)
+      setFocusedRowIndex((prev) => prev + 1);
   }
 
   function onCompleteHandler(results) {
@@ -87,7 +90,9 @@ export function GamePage() {
     <div className="game-page">
       <header className="game-page__header">
         <LinkButton to="/">Вернуться</LinkButton>
-        <Button onClick={() => openModal(<HelpModal correctWord={correctWord} />)}>
+        <Button
+          onClick={() => openModal(<HelpModal correctWord={correctWord} />)}
+        >
           Показать правильное слово
         </Button>
       </header>
