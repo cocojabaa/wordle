@@ -1,1 +1,1 @@
-export * from "./GamePage.jsx"
+export * from './GamePage.jsx';

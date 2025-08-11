@@ -1,1 +1,1 @@
-export * from "./VictoryModal.jsx"
+export * from './VictoryModal.jsx';

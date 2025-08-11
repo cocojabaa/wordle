@@ -1,4 +1,4 @@
-@use "../../styles/vars";
+@use '../../styles/vars';
 
 .link-button {
   color: var(--font-color-primary);
@@ -8,7 +8,7 @@
   border-radius: 10px;
   transition-duration: 0.2s;
 
-  @media(hover: hover) {
+  @media (hover: hover) {
     &:hover {
       background-color: var(--button-hover-background-color);
     }

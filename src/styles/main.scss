@@ -1,19 +1,19 @@
-@use "./normalize";
-@use "./vars";
-@use "./breakpoints" as *;
+@use './normalize';
+@use './vars';
+@use './breakpoints' as *;
 
 #root {
   background-color: var(--page-background-color);
 }
 
 :root {
-  @include respond-to("xxl") {
+  @include respond-to('xxl') {
     font-size: 15px;
   }
-  @include respond-to("xl") {
+  @include respond-to('xl') {
     font-size: 14px;
   }
-  @include respond-to("lg") {
+  @include respond-to('lg') {
     font-size: 13px;
   }
   //@include respond-to("md") {

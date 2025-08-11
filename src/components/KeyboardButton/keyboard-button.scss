@@ -1,5 +1,5 @@
-@use "../../styles/vars";
-@use "../../styles/breakpoints" as *;
+@use '../../styles/vars';
+@use '../../styles/breakpoints' as *;
 
 .keyboard-button {
   color: var(--font-color-primary);
@@ -11,13 +11,12 @@
   min-width: 0;
   text-align: center;
 
-  @include respond-to("lg") {
+  @include respond-to('lg') {
     font-size: 1.1rem;
   }
-  @include respond-to("sm") {
+  @include respond-to('sm') {
     padding: 0.5rem 0.7rem;
   }
-
 
   &--incorrect {
     background-color: var(--letter-border-color);
@@ -40,6 +39,6 @@
     scale: 1.1;
   }
   to {
-    scale: 1.0;
+    scale: 1;
   }
 }

@@ -1,1 +1,1 @@
-export * from "./WordRow.jsx"
+export * from './WordRow.jsx';

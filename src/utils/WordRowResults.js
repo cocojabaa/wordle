@@ -11,22 +11,21 @@ export default class WordRowResult {
    */
   get resultsArray() {
     const results = Array(this.correctWord.length);
-    this.enteredWord.split("").forEach((letter, index) => {
+    this.enteredWord.split('').forEach((letter, index) => {
       if (letter === this.correctWord[index]) results[index] = 2;
       else if (this.correctWord.includes(letter)) results[index] = 1;
       else results[index] = 0;
-    })
+    });
     return results;
   }
 
   get resultsObject() {
     const results = {};
-    this.enteredWord.split("").forEach((letter, index) => {
+    this.enteredWord.split('').forEach((letter, index) => {
       if (letter === this.correctWord[index]) results[letter] = 2;
       else if (this.correctWord.includes(letter)) results[letter] = 1;
       else results[letter] = 0;
-    })
+    });
     return results;
-
   }
 }
