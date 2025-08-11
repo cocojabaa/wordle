@@ -15,7 +15,7 @@ export default defineConfig([
       js.configs.recommended,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
-      configPrettier,
+      configPrettier, // для совместимости с prettier
     ],
     plugins: {
       react: pluginReact,
