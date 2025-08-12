@@ -2,49 +2,64 @@
 @use '../../styles/breakpoints' as *;
 
 .word-row {
-  display: flex;
-  gap: 0.3rem;
-  justify-content: center;
+  width: fit-content;
+  margin-inline: auto;
+  pointer-events: none;
+  position: relative;
 
   &--focus {
-    cursor: text;
-    input {
+    pointer-events: auto;
+
+    .word-row__letter {
       background-color: var(--focus-row-background-color);
     }
   }
 
-  &__letter-input {
-    height: 3.3rem;
-    width: 3.3rem;
-    min-width: 0;
-    text-align: center;
-    outline: none;
-    background-color: transparent;
-    border: var(--letter-border-color) 1px solid;
-    border-radius: 10px;
-    color: var(--font-color-primary);
-    font-size: 1.8rem;
+  &__letters-container {
+    display: flex;
+    gap: 0.3rem;
   }
 
-  & &__letter-input--correct {
-    // Дважды повторяем .word-row для специфичность 0, 2, 0
+  &__letter {
+    color: var(--font-color-primary);
+    font-size: 1.8rem;
+    height: 3.3rem;
+    width: 3.3rem;
+    border: solid 1px var(--letter-border-color);
+    border-radius: 10px;
+    background-color: transparent;
+    text-align: center;
+  }
+
+  // Дважды повторяем .word-row для специфичности 0 2 0
+  & &__letter--correct {
     background-color: var(--correct-letter-color);
     animation: show 0.2s forwards;
   }
 
-  & &__letter-input--present {
-    // Дважды повторяем .word-row для специфичность 0, 2, 0
-    background-color: var(--present-letter-color);
+  // Дважды повторяем .word-row для специфичности 0 2 0
+  & &__letter--incorrect {
+    background-color: var(--incorrect-letter-color);
     animation: show 0.2s forwards;
   }
 
-  & &__letter-input--incorrect {
-    // Дважды повторяем .word-row для специфичность 0, 2, 0
+  // Дважды повторяем .word-row для специфичности 0 2 0
+  & &__letter--present {
     background-color: var(--letter-border-color);
     animation: show 0.2s forwards;
   }
 
-  @include respond-to('sm') {
+  &__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    opacity: 0;
+    height: 0;
+    width: 0;
   }
 }
 

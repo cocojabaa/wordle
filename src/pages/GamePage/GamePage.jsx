@@ -62,28 +62,22 @@ export function GamePage() {
   }
 
   function onCompleteHandler(results) {
-    if (results.resultsArray.every((item) => item === 2)) {
+    if (results.array.every((item) => item === 2)) {
       setTimeout(() => {
         openModal(<VictoryModal correctWord={correctWord} />);
       }, 500);
-      console.log('WIN');
       return;
     }
     setKeyStates((prev) => ({
       ...prev,
-      ...results.resultsObject,
+      ...results.object,
     }));
     nextFocusedRowIndex();
   }
 
   useEffect(() => {
-    console.log(keyStates);
-  }, [keyStates]);
-
-  useEffect(() => {
     const randomWord = RUWORDS[Math.floor(Math.random() * RUWORDS.length)];
     setCorrectWord(randomWord.toLowerCase());
-    console.log('ПРАВИЛЬНОЕ СЛОВО:', randomWord.toLowerCase());
   }, []);
 
   return (

@@ -11,95 +11,77 @@ export function WordRow({
   isFocused,
   onCompleteHandler,
 }) {
-  const [focusIndex, setFocusIndex] = useState(0);
+  const [enteredWord, setEnteredWord] = useState('');
   const wordRowRef = useRef(null);
-  const [letters, setLetters] = useState(Array(wordLength).fill(''));
+  const inputRef = useRef(null);
 
-  function onRowClickHandler() {
-    wordRowRef.current.children[focusIndex].focus();
-  }
-
-  function onInputKeydownHandler(e, index) {
-    if (/^[а-яА-ЯёЁ]$/.test(e.key) && !letters[index]) {
-      // проверка на букву и что в ячейке ничего не написано
-      setLetters((prev) => {
-        return prev.map((item, i) =>
-          i === index ? e.key.toLowerCase() : item
-        );
-      });
-      setNextFocusIndex();
-    }
-    if (e.key === 'Backspace') {
-      if (letters[focusIndex]) {
-        setLetters((prev) => {
-          return prev.map((item, i) => (i === index ? '' : item));
-        });
-        return;
-      }
-      if (index === 0) return;
-      setLetters((prev) => {
-        return prev.map((item, i) => (i === index - 1 ? '' : item));
-      });
-      setPreviousFocusIndex();
-    }
-    if (e.key === 'Enter') {
-      if (letters.includes('')) return; // если есть неписанные буквы
-      const enteredWord = letters.join('');
-      const results = new WordRowResult(correctWord, enteredWord);
-      renderLettersColors(results.resultsArray);
-      onCompleteHandler(results);
-    }
-    if (e.key === 'ArrowRight') setNextFocusIndex();
-    if (e.key === 'ArrowLeft') setPreviousFocusIndex();
-  }
-
-  function isInputClickable(inputIndex) {
-    return isFocused && focusIndex === inputIndex;
-  }
-
-  function renderLettersColors(results) {
+  function renderLetterColors(results) {
     results.forEach((value, index) => {
       wordRowRef.current.children[index].classList.add(
-        `word-row__letter-input--${letterStateClasses[value]}`
+        `word-row__letter--${letterStateClasses[value]}`
       );
     });
   }
 
-  function setNextFocusIndex() {
-    if (focusIndex !== wordLength - 1) setFocusIndex((prev) => prev + 1);
+  function handleComplete() {
+    if (enteredWord.length !== wordLength) return;
+    const results = new WordRowResult(correctWord, enteredWord);
+    renderLetterColors(results.array);
+    onCompleteHandler(results);
   }
 
-  function setPreviousFocusIndex() {
-    if (focusIndex !== 0) setFocusIndex((prev) => prev - 1);
+  function onInputChangeHandler(e) {
+    const newValue = e.target.value;
+    if (newValue.length > wordLength) return;
+    if (
+      newValue.length > enteredWord.length &&
+      /^[а-яА-ЯёЁ]$/.test(newValue.slice(-1))
+    ) {
+      setEnteredWord(newValue);
+    } else if (newValue.length < enteredWord.length) setEnteredWord(newValue);
+  }
+
+  function onKeyDownHandler(e) {
+    const navigationKeys = [
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowUp',
+      'ArrowDown',
+      'Home',
+      'End',
+      'PageUp',
+      'PageDown',
+    ];
+    if (navigationKeys.includes(e.key)) e.preventDefault();
+    if (e.key === 'Enter') handleComplete();
   }
 
   useEffect(() => {
-    wordRowRef.current.children[focusIndex].focus();
-  }, [focusIndex]);
-
-  useEffect(() => {
-    if (isFocused) wordRowRef.current.children[0].focus();
+    if (isFocused) inputRef.current.focus();
   }, [isFocused]);
 
   return (
-    <div
-      className={isFocused ? 'word-row word-row--focus' : 'word-row'}
-      onClick={onRowClickHandler}
-      ref={wordRowRef}
-    >
-      {[...Array(wordLength).keys()].map((index) => {
-        return (
-          <input
-            type="text"
-            className="word-row__letter-input"
-            readOnly={!isInputClickable(index)}
-            disabled={!isFocused}
-            key={index}
-            onKeyDown={(e) => onInputKeydownHandler(e, index)}
-            value={letters[index]}
-          />
-        );
-      })}
-    </div>
+    <label className={isFocused ? 'word-row word-row--focus' : 'word-row'}>
+      <div className="word-row__letters-container" ref={wordRowRef}>
+        {[
+          ...Array(wordLength)
+            .keys()
+            .map((index) => (
+              <p className="word-row__letter" key={index}>
+                {enteredWord[index]}
+              </p>
+            )),
+        ]}
+      </div>
+      <input
+        type="text"
+        className="word-row__input"
+        disabled={!isFocused}
+        onChange={onInputChangeHandler}
+        onKeyDown={onKeyDownHandler}
+        value={enteredWord}
+        ref={inputRef}
+      />
+    </label>
   );
 }

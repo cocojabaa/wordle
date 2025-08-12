@@ -9,7 +9,7 @@ export default class WordRowResult {
    * индекс числа - это индекс буквы в слове,
    * само число - информация (0 - буквы нет в слове, 1 - буква не на своем месте, 2 - буква на своем месте)
    */
-  get resultsArray() {
+  get array() {
     const results = Array(this.correctWord.length);
     this.enteredWord.split('').forEach((letter, index) => {
       if (letter === this.correctWord[index]) results[index] = 2;
@@ -19,7 +19,7 @@ export default class WordRowResult {
     return results;
   }
 
-  get resultsObject() {
+  get object() {
     const results = {};
     this.enteredWord.split('').forEach((letter, index) => {
       if (letter === this.correctWord[index]) results[letter] = 2;
