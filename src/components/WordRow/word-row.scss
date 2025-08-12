@@ -45,7 +45,7 @@
 
   // Дважды повторяем .word-row для специфичности 0 2 0
   & &__letter--present {
-    background-color: var(--letter-border-color);
+    background-color: var(--present-letter-color);
     animation: show 0.2s forwards;
   }
 
