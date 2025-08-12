@@ -2,7 +2,6 @@
 @use '../../styles/breakpoints' as *;
 
 .word-row {
-  width: fit-content;
   margin-inline: auto;
   pointer-events: none;
   position: relative;
@@ -29,6 +28,7 @@
     border-radius: 10px;
     background-color: transparent;
     text-align: center;
+    min-width: 0;
   }
 
   // Дважды повторяем .word-row для специфичности 0 2 0
