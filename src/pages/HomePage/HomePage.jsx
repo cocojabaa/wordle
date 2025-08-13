@@ -13,12 +13,19 @@ export function HomePage() {
       <h1 className="home-page__title">Wordle!</h1>
       <div className="home-page__buttons-container">
         <LinkButton to="/play">Играть со случайным словом</LinkButton>
-        <Button isDisabled={false} onClick={() => openModal(<EnterWordModal />)}>
+        <Button
+          isDisabled={false}
+          onClick={() => openModal(<EnterWordModal />)}
+        >
           Загадать слово
         </Button>
       </div>
       <a className="home-page__contact" href="https://github.com/cocojabaa">
-        <img src={githubIcon} alt="github icon" className="home-page__contact-image" />
+        <img
+          src={githubIcon}
+          alt="github icon"
+          className="home-page__contact-image"
+        />
       </a>
     </div>
   );

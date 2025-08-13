@@ -22,7 +22,10 @@ export const ModalProvider = ({ children }) => {
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
-      <div className={modalContent ? 'modal' : 'modal modal--hidden'} onClick={onClickHandler}>
+      <div
+        className={modalContent ? 'modal' : 'modal modal--hidden'}
+        onClick={onClickHandler}
+      >
         <div className="modal__content">{modalContent}</div>
       </div>
     </ModalContext.Provider>

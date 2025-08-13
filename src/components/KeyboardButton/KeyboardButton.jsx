@@ -1,7 +1,7 @@
 import './keyboard-button.scss';
 import { letterStateClasses } from '../../constants/letterStateClasses.js';
 
-export function KeyboardButton({ state, children }) {
+export function KeyboardButton({ state, children, onClick }) {
   return (
     <button
       className={
@@ -9,6 +9,7 @@ export function KeyboardButton({ state, children }) {
           ? 'keyboard-button'
           : `keyboard-button keyboard-button--${letterStateClasses[state]}`
       }
+      onClick={() => onClick(children)}
     >
       {children}
     </button>

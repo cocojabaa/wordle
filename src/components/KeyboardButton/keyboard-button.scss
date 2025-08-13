@@ -11,6 +11,8 @@
   min-width: 0;
   text-align: center;
 
+  pointer-events: none; // TODO
+
   @include respond-to('lg') {
     font-size: 1.1rem;
   }

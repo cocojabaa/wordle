@@ -1,7 +1,7 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
+// import reactRefresh from 'eslint-plugin-react-refresh';
 import configPrettier from 'eslint-config-prettier';
 import pluginImport from 'eslint-plugin-import';
 import pluginReact from 'eslint-plugin-react';
@@ -14,7 +14,7 @@ export default defineConfig([
     extends: [
       js.configs.recommended,
       reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
+      // reactRefresh.configs.vite,
       configPrettier, // для совместимости с prettier
     ],
     plugins: {
