@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { Base64 } from 'js-base64';
 
 import { Button } from '../Button/index.js';
-import { LinkButton } from '../LinkButton/index.js';
 import { useModal } from '../../HOC/ModalProvider';
 import './enter-word-modal.scss';
+import { useNavigate } from 'react-router-dom';
 
 export const EnterWordModal = () => {
   const { closeModal } = useModal();
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
 
   function inputChangeHandler(e) {
     if (e.target.value.length > inputValue.length) {
@@ -21,13 +22,13 @@ export const EnterWordModal = () => {
     } else setInputValue(e.target.value.toLowerCase());
   }
 
-  // function onInputKeyDownHandler(e) {
-  //   if (e.key === 'Enter') startGameHandler()
-  // }
+  function onInputKeyDownHandler(e) {
+    if (e.key === 'Enter') startGameHandler();
+  }
 
-  function startGameHandler(e) {
-    if (inputValue.length !== 5) {
-      e.preventDefault();
+  function startGameHandler() {
+    if (inputValue.length === 5) {
+      navigate(`/play/${Base64.encodeURL(inputValue)}`);
     }
   }
 
@@ -43,16 +44,12 @@ export const EnterWordModal = () => {
         id="enter-word-modal-input"
         className="enter-word-modal__input"
         onChange={inputChangeHandler}
+        onKeyDown={onInputKeyDownHandler}
         value={inputValue}
       />
       <div className="enter-word-modal__buttons-container">
         <Button onClick={closeModal}>Отмена</Button>
-        <LinkButton
-          to={`/play/${Base64.encodeURL(inputValue)}`}
-          onClick={startGameHandler}
-        >
-          Играть
-        </LinkButton>
+        <Button onClick={startGameHandler}>Играть</Button>
       </div>
     </div>
   );
