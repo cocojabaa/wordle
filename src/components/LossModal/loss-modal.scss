@@ -1,0 +1,24 @@
+@use '../../styles/vars';
+
+.loss-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  p {
+    color: var(--font-color-primary);
+  }
+
+  &__title {
+    font-size: 1.5rem;
+  }
+
+  &__text {
+  }
+
+  &__buttons-container {
+    display: flex;
+    gap: 1rem;
+  }
+}

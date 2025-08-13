@@ -10,15 +10,18 @@ export function WordRow({
   correctWord,
   isFocused,
   onCompleteHandler,
+  isLastRow,
 }) {
   const [enteredWord, setEnteredWord] = useState('');
   const wordRowRef = useRef(null);
   const inputRef = useRef(null);
 
   function renderLetterColors(results) {
+    let isLoss = false;
+    if (isLastRow && !results.every((item) => item === 2)) isLoss = true;
     results.forEach((value, index) => {
       wordRowRef.current.children[index].classList.add(
-        `word-row__letter--${letterStateClasses[value]}`
+        `word-row__letter--${isLoss ? 'loss' : letterStateClasses[value]}`
       );
     });
   }

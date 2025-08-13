@@ -21,6 +21,10 @@ export const EnterWordModal = () => {
     } else setInputValue(e.target.value.toLowerCase());
   }
 
+  // function onInputKeyDownHandler(e) {
+  //   if (e.key === 'Enter') startGameHandler()
+  // }
+
   function startGameHandler(e) {
     if (inputValue.length !== 5) {
       e.preventDefault();

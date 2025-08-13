@@ -12,6 +12,7 @@ import { useModal } from '../../HOC/ModalProvider';
 import { VictoryModal } from '../../components/VictoryModal';
 import { Keyboard } from '../../components/Keyboard';
 import { HelpModal } from '../../components/HelpModal/index.js';
+import { LossModal } from '../../components/LossModal/index.js';
 
 const wordLength = 5;
 const numberOfAttempts = 6;
@@ -36,17 +37,30 @@ export function GamePage() {
   }
 
   function onCompleteHandler(results) {
+    // Если выиграл
     if (results.array.every((item) => item === 2)) {
       setTimeout(() => {
         openModal(<VictoryModal correctWord={correctWord} />);
       }, 500);
       return;
     }
-    setKeyStates((prev) => ({
-      ...prev,
-      ...results.object,
-    }));
-    nextFocusedRowIndex();
+    // Если проиграл
+    if (
+      focusedRowIndex === numberOfAttempts - 1 &&
+      !results.array.every((item) => item === 2)
+    ) {
+      setTimeout(() => {
+        openModal(<LossModal correctWord={correctWord} />);
+      }, 500);
+    }
+    // Если все еще играет
+    else {
+      setKeyStates((prev) => ({
+        ...prev,
+        ...results.object,
+      }));
+      nextFocusedRowIndex();
+    }
   }
 
   function emulateKeydown(/* key */) {
@@ -82,6 +96,7 @@ export function GamePage() {
                 wordLength={wordLength}
                 isFocused={focusedRowIndex === index}
                 onCompleteHandler={onCompleteHandler}
+                isLastRow={focusedRowIndex === numberOfAttempts - 1}
               />
             );
           })}

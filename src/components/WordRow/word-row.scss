@@ -49,6 +49,11 @@
     animation: show 0.2s forwards;
   }
 
+  & &__letter--loss {
+    background-color: var(--loss-letter-color);
+    animation: show 0.2s forwards;
+  }
+
   &__input {
     position: absolute;
     left: 0;
