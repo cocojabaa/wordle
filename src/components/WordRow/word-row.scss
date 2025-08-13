@@ -39,7 +39,7 @@
 
   // Дважды повторяем .word-row для специфичности 0 2 0
   & &__letter--incorrect {
-    background-color: var(--incorrect-letter-color);
+    background-color: var(--letter-border-color);
     animation: show 0.2s forwards;
   }
 
