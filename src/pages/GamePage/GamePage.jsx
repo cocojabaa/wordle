@@ -1,10 +1,12 @@
-import { WordRow } from '../../components/WordRow';
-import { LinkButton } from '../../components/LinkButton';
 import './game-page.scss';
-import { Button } from '../../components/Button';
+import { Base64 } from 'js-base64';
+import { useParams } from 'react-router-dom';
 
 import { useEffect, useState, useRef } from 'react';
 
+import { WordRow } from '../../components/WordRow';
+import { LinkButton } from '../../components/LinkButton';
+import { Button } from '../../components/Button';
 import { RUWORDS } from '../../constants/russianWords.js';
 import { useModal } from '../../HOC/ModalProvider';
 import { VictoryModal } from '../../components/VictoryModal';
@@ -26,6 +28,7 @@ export function GamePage() {
   const [keyStates, setKeyStates] = useState(defaultKeyStates);
   const rowsContainerRef = useRef(null);
   const { openModal } = useModal();
+  const params = useParams();
 
   function nextFocusedRowIndex() {
     if (focusedRowIndex !== numberOfAttempts - 1)
@@ -51,8 +54,12 @@ export function GamePage() {
   }
 
   useEffect(() => {
-    const randomWord = RUWORDS[Math.floor(Math.random() * RUWORDS.length)];
-    setCorrectWord(randomWord.toLowerCase());
+    if (params.encodedWord) {
+      setCorrectWord(Base64.decode(params.encodedWord));
+    } else {
+      const randomWord = RUWORDS[Math.floor(Math.random() * RUWORDS.length)];
+      setCorrectWord(randomWord.toLowerCase());
+    }
   }, []);
 
   return (

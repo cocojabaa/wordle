@@ -47,7 +47,7 @@ export default defineConfig([
             'sibling',
             'index',
           ],
-          'newlines-between': 'always',
+          // 'newlines-between': 'never',
         },
       ],
     },

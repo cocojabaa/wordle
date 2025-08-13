@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { Base64 } from 'js-base64';
 
 import { Button } from '../Button/index.js';
+import { LinkButton } from '../LinkButton/index.js';
 import { useModal } from '../../HOC/ModalProvider';
 import './enter-word-modal.scss';
 
@@ -19,6 +21,12 @@ export const EnterWordModal = () => {
     } else setInputValue(e.target.value.toLowerCase());
   }
 
+  function startGameHandler(e) {
+    if (inputValue.length !== 5) {
+      e.preventDefault();
+    }
+  }
+
   return (
     <div className="enter-word-modal">
       <label
@@ -35,7 +43,12 @@ export const EnterWordModal = () => {
       />
       <div className="enter-word-modal__buttons-container">
         <Button onClick={closeModal}>Отмена</Button>
-        <Button isDisabled={true}>Играть</Button>
+        <LinkButton
+          to={`/play/${Base64.encodeURL(inputValue)}`}
+          onClick={startGameHandler}
+        >
+          Играть
+        </LinkButton>
       </div>
     </div>
   );

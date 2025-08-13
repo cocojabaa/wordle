@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/play" element={<GamePage />} />
-        <Route path="/play/:encryptedWord" element={<GamePage />} />
+        <Route path="/play/:encodedWord" element={<GamePage />} />
       </Routes>
     </>
   );
