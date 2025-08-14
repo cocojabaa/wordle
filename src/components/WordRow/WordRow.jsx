@@ -67,13 +67,11 @@ export function WordRow({
     <label className={isFocused ? 'word-row word-row--focus' : 'word-row'}>
       <div className="word-row__letters-container" ref={wordRowRef}>
         {[
-          ...Array(wordLength)
-            .keys()
-            .map((index) => (
-              <p className="word-row__letter" key={index}>
-                {enteredWord[index]}
-              </p>
-            )),
+          ...Array.from({ length: wordLength }, (_, i) => i).map((index) => (
+            <p className="word-row__letter" key={index}>
+              {enteredWord[index]}
+            </p>
+          )),
         ]}
       </div>
       <input
@@ -84,6 +82,10 @@ export function WordRow({
         onKeyDown={onKeyDownHandler}
         value={enteredWord}
         ref={inputRef}
+        // inputMode="text" // Это может помочь на мобильных устройствах
+        // autoCapitalize="none" // Отключаем автоматическую заглавную букву
+        // autoComplete="off" // Отключаем автозаполнение
+        // autoCorrect="off" // Отключаем автокоррекцию
       />
     </label>
   );
