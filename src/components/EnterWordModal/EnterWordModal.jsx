@@ -46,6 +46,8 @@ export const EnterWordModal = () => {
         onChange={inputChangeHandler}
         onKeyDown={onInputKeyDownHandler}
         value={inputValue}
+        autoComplete="off" // Отключаем автозаполнение
+        autoCorrect="off" // Отключаем автокоррекцию
       />
       <div className="enter-word-modal__buttons-container">
         <Button onClick={closeModal}>Отмена</Button>
