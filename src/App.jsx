@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route path="/play" element={<GamePage />} />
         <Route path="/play/:encodedWord" element={<GamePage />} />
       </Routes>
