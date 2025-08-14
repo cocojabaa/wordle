@@ -11,6 +11,7 @@ export function WordRow({
   isFocused,
   onCompleteHandler,
   isLastRow,
+  keyboardTrigger,
 }) {
   const [enteredWord, setEnteredWord] = useState('');
   const wordRowRef = useRef(null);
@@ -59,9 +60,23 @@ export function WordRow({
     if (e.key === 'Enter') handleComplete();
   }
 
+  function onKeyboardKeydown(key) {
+    if (key === '⌫') {
+      if (enteredWord.length > 0) setEnteredWord((prev) => prev.slice(0, -1));
+    } else if (key === '↵') handleComplete();
+    else if (enteredWord.length !== wordLength) {
+      setEnteredWord((prev) => prev + key);
+    }
+  }
+
   useEffect(() => {
     if (isFocused) inputRef.current.focus();
   }, [isFocused]);
+
+  useEffect(() => {
+    if (isFocused && keyboardTrigger.key)
+      onKeyboardKeydown(keyboardTrigger.key);
+  }, [keyboardTrigger]);
 
   return (
     <label className={isFocused ? 'word-row word-row--focus' : 'word-row'}>
@@ -82,10 +97,10 @@ export function WordRow({
         onKeyDown={onKeyDownHandler}
         value={enteredWord}
         ref={inputRef}
-        // inputMode="text" // Это может помочь на мобильных устройствах
-        // autoCapitalize="none" // Отключаем автоматическую заглавную букву
-        // autoComplete="off" // Отключаем автозаполнение
-        // autoCorrect="off" // Отключаем автокоррекцию
+        inputMode="text" // Это может помочь на мобильных устройствах
+        autoCapitalize="none" // Отключаем автоматическую заглавную букву
+        autoComplete="off" // Отключаем автозаполнение
+        autoCorrect="off" // Отключаем автокоррекцию
       />
     </label>
   );

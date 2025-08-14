@@ -27,6 +27,10 @@ export function GamePage() {
   const [focusedRowIndex, setFocusedRowIndex] = useState(0);
   const [correctWord, setCorrectWord] = useState('ххххх');
   const [keyStates, setKeyStates] = useState(defaultKeyStates);
+  const [keyboardTrigger, setKeyboardTrigger] = useState({
+    triggerFlag: true,
+    key: null,
+  });
   const rowsContainerRef = useRef(null);
   const { openModal } = useModal();
   const params = useParams();
@@ -63,8 +67,11 @@ export function GamePage() {
     }
   }
 
-  function emulateKeydown(/* key */) {
-    // TODO
+  function emulateKeydown(key) {
+    setKeyboardTrigger((prev) => ({
+      triggerFlag: !prev.triggerFlag,
+      key: key,
+    }));
   }
 
   useEffect(() => {
@@ -97,6 +104,7 @@ export function GamePage() {
                 isFocused={focusedRowIndex === index}
                 onCompleteHandler={onCompleteHandler}
                 isLastRow={focusedRowIndex === numberOfAttempts - 1}
+                keyboardTrigger={keyboardTrigger}
               />
             );
           })}
