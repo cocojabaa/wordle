@@ -10,6 +10,7 @@
   font-size: 1.1rem;
   min-width: 0;
   text-align: center;
+  transition-duration: 0.2s;
 
   @include respond-to('lg') {
     font-size: 1.1rem;
@@ -31,6 +32,15 @@
   &--correct {
     background-color: var(--correct-letter-color);
     animation: show 0.2s forwards;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+  &:active {
+    transform: translateY(1px);
   }
 }
 
